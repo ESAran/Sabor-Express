@@ -1,5 +1,7 @@
 import os
 
+restaurantes = []
+
 def nome_programa():
     print('''
 
@@ -17,11 +19,6 @@ def exibir_opcoes():
 4. Sair\n''')
     
 def finalizar_app():
-    # MACOS
-    if os.name == 'posix':
-        os.system('clear')
-    elif os.name == 'nt':
-        os.system('cls') # WINDOWS
     print('''
 ________________________________
           
@@ -31,26 +28,53 @@ ________________________________
 
           ''')
 
+def cadastrar_novo_restaurante():
+    limpar_console()
+    print('__________________________________________')
+    print('Cadastrar Restaurante\n')
+    
+    nome = input('Digite o nome do restaurante: ')
+    restaurantes.append(nome)
+    print(f'O restaurante {nome} foi cadastrado com sucesso!')
+    print()
+    input('Digite uma tecla para retornar ao menu principal. ')
+    main()
+
+def limpar_console():
+    if os.name == 'posix':
+        os.system('clear') # MACOS
+    elif os.name == 'nt':
+        os.system('cls') # WINDOWS
+
+def opcao_invalida():
+    limpar_console()
+    print('Opção inválida! Tente novamente!')
+    input('Digite uma tecla para retornar ao menu principal. ')
+    main()
+
 def escolher_opcao(): 
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: '))
 
-    opcao_escolhida = int(input('Escolha uma opção: '))
-
-    match opcao_escolhida:
-        case 1: 
-            print('\n__________________________________________')
-            print('Cadastrar Restaurante')
-        case 2: 
-            print('\n__________________________________________')
-            print('Listar Restaurantes')
-        case 3: 
-            print('\n__________________________________________')
-            print('Ativar Restaurantes')
-        case 4: 
-            finalizar_app()
-        case _: print('Opção inválida! Tente novamente!')
+        match opcao_escolhida:
+            case 1:
+                cadastrar_novo_restaurante()
+            case 2: 
+                print('\n__________________________________________')
+                print('Listar Restaurantes')
+            case 3: 
+                print('\n__________________________________________')
+                print('Ativar Restaurantes')
+            case 4: 
+                finalizar_app()
+            case _:
+                opcao_invalida()
+    except: 
+        opcao_invalida()
 
 def main():
-    nome_programa()
+    limpar_console()
+    #nome_programa()
     exibir_opcoes()
     escolher_opcao()
 
