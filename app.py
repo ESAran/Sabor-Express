@@ -1,6 +1,6 @@
 import os
 
-restaurantes = []
+restaurantes = ["Manu's Risottos", "Pizzaranria"]
 
 def nome_programa():
     print('''
@@ -40,6 +40,18 @@ def cadastrar_novo_restaurante():
     input('Digite uma tecla para retornar ao menu principal. ')
     main()
 
+def listar_restaurantes():
+    limpar_console()
+    print('\n__________________________________________')
+    print('Listar Restaurantes\n')
+    i=0
+    for restaurante in restaurantes:
+        i+=1
+        print(f'[{i}] restaurante: {restaurante}')
+    print()
+    input('Digite uma tecla para retornar ao menu principal. ')
+    main()
+
 def limpar_console():
     if os.name == 'posix':
         os.system('clear') # MACOS
@@ -60,8 +72,7 @@ def escolher_opcao():
             case 1:
                 cadastrar_novo_restaurante()
             case 2: 
-                print('\n__________________________________________')
-                print('Listar Restaurantes')
+                listar_restaurantes()
             case 3: 
                 print('\n__________________________________________')
                 print('Ativar Restaurantes')
@@ -74,7 +85,7 @@ def escolher_opcao():
 
 def main():
     limpar_console()
-    #nome_programa()
+    nome_programa()
     exibir_opcoes()
     escolher_opcao()
 
