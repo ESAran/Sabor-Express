@@ -1,6 +1,9 @@
 import os
 
+# Lista de Restaurantes
 restaurantes = ["Manu's Risottos", "Pizzaranria"]
+
+#region GUI
 
 def nome_programa():
     print('''
@@ -12,12 +15,21 @@ def nome_programa():
 ██████╔╝██║░░██║██████╦╝╚█████╔╝██║░░██║  ███████╗██╔╝╚██╗██║░░░░░██║░░██║███████╗██████╔╝██████╔╝
 ╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░\n''')
 
+def exibir_subtitulo(subtitulo):
+    print('''              
+▒█▀▀▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ 　 ▒█▀▀▀ █░█ █▀▀█ █▀▀█ █▀▀ █▀▀ █▀▀ 
+░▀▀▀▄▄ █▄▄█ █▀▀▄ █░░█ █▄▄▀ 　 ▒█▀▀▀ ▄▀▄ █░░█ █▄▄▀ █▀▀ ▀▀█ ▀▀█ 
+▒█▄▄▄█ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ 　 ▒█▄▄▄ ▀░▀ █▀▀▀ ▀░▀▀ ▀▀▀ ▀▀▀ ▀▀▀
+=============================================================
+          ''')
+    print(f'{subtitulo}\n')
+
 def exibir_opcoes():
     print('''1. Cadastrar restaurante
 2. Listar restaurantes
 3. Ativar restaurantes
 4. Sair\n''')
-    
+
 def finalizar_app():
     print('''
 ________________________________
@@ -28,41 +40,41 @@ ________________________________
 
           ''')
 
-def cadastrar_novo_restaurante():
-    limpar_console()
-    print('__________________________________________')
-    print('Cadastrar Restaurante\n')
-    
-    nome = input('Digite o nome do restaurante: ')
-    restaurantes.append(nome)
-    print(f'O restaurante {nome} foi cadastrado com sucesso!')
-    print()
-    input('Digite uma tecla para retornar ao menu principal. ')
-    main()
-
-def listar_restaurantes():
-    limpar_console()
-    print('\n__________________________________________')
-    print('Listar Restaurantes\n')
-    i=0
-    for restaurante in restaurantes:
-        i+=1
-        print(f'[{i}] restaurante: {restaurante}')
-    print()
-    input('Digite uma tecla para retornar ao menu principal. ')
-    main()
-
 def limpar_console():
     if os.name == 'posix':
         os.system('clear') # MACOS
     elif os.name == 'nt':
         os.system('cls') # WINDOWS
 
-def opcao_invalida():
-    limpar_console()
-    print('Opção inválida! Tente novamente!')
+#endregion
+
+#region Funcionamento
+def voltar_ao_menu_principal():
     input('Digite uma tecla para retornar ao menu principal. ')
     main()
+
+def cadastrar_novo_restaurante():
+    limpar_console()
+    exibir_subtitulo('1. Cadastrar restaurante')
+    
+    nome = input('\tDigite o nome do restaurante: ')
+    restaurantes.append(nome)
+    print(f'\tO restaurante \033[1m\033[92m{nome}\033[0m foi cadastrado com sucesso!')
+    voltar_ao_menu_principal()
+
+def listar_restaurantes():
+    limpar_console()
+    exibir_subtitulo('2. Listar Restaurantes:')
+    i=0
+    for restaurante in restaurantes:
+        i+=1
+        print(f'\t[{i}] restaurante: \033[1m{restaurante}\033[0m')
+    voltar_ao_menu_principal()
+
+def opcao_invalida():
+    limpar_console()
+    exibir_subtitulo('Opção inválida! Tente novamente!')
+    voltar_ao_menu_principal()
 
 def escolher_opcao(): 
     try:
@@ -74,7 +86,6 @@ def escolher_opcao():
             case 2: 
                 listar_restaurantes()
             case 3: 
-                print('\n__________________________________________')
                 print('Ativar Restaurantes')
             case 4: 
                 finalizar_app()
@@ -83,6 +94,8 @@ def escolher_opcao():
     except: 
         opcao_invalida()
 
+#endregion
+        
 def main():
     limpar_console()
     nome_programa()
