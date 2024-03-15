@@ -17,7 +17,7 @@ link do curso: [Python: crie a sua primeira aplicação](https://cursos.alura.co
 
 ---
 
-## Aplicativo
+# Aplicativo
 
 O aplicativo criado foi uma ideia simples de aplicativo de cadastro chamado **"Sabor Express"**, para aprender as funções de Python através do cadastramento, listagem, alternação de estado e remoção de um dicionário. Visto formatação de strings, manipulação de interface via terminal e noções básicas de sintaxe e estruturas.
 
@@ -63,12 +63,14 @@ Lista as opções em um menu e realiza a função respectiva de cada uma.
 
 ```
 
-### Cadastrar restaurante
+## Cadastrar restaurante
+
 Cadastra o restaurante dentro do dicionário.
 
 ![Cadastramento](image/README/cadastramento.gif)
 
 ---
+
 ```python
 def cadastrar_novo_restaurante():
     '''Essa função é responsável por cadastrar um novo restaurante 
@@ -91,12 +93,14 @@ def cadastrar_novo_restaurante():
     voltar_ao_menu_principal()
 ```
 
-### Listar restaurantes
+## Listar restaurantes
+
 Lista os restaurantes existentes com sua categoria e seu estado (Em funcionamento ou Desativado).
 
 ![Listar](image/README/listar.gif)
 
 ---
+
 ```python
 def listar_restaurantes():
     '''Lista os restaurantes presentes na lista 
@@ -115,12 +119,13 @@ def listar_restaurantes():
         else:
             print(f'\t\t{cor_texto.GREY}Desativado{cor_texto.END}')
         print('')
-    
+  
     voltar_ao_menu_principal()
 
 ```
 
-### Alternar estados dos restaurantes
+## Alternar estados dos restaurantes
+
 Altera o dicionário invertendo o estado de um restaurante (De desativado para ativo).
 
 ![Alternar](image/README/alternar.gif)
@@ -156,12 +161,14 @@ def alternar_estado_restaurante():
     voltar_ao_menu_principal()
 ```
 
-### Remover restaurante
+## Remover restaurante
+
 Remove um restaurante caso ele esteja desativado.
 
 ![Remover](image/README/remover.gif)
 
 ---
+
 ```python
 def remover_restaurantes():
     '''
@@ -199,4 +206,3 @@ def remover_restaurantes():
             else: main()
     else: voltar_ao_menu_principal()
 ```
-
