@@ -125,10 +125,78 @@ def listar_restaurantes():
 Altera o dicionário invertendo o estado de um restaurante (De desativado para ativo).
 
 
+```python
+def alternar_estado_restaurante():
+    '''Altera o estado ativo/desativado de um restaurante 
+  
+    Outputs:
+    - Exibe mensagem indicando o sucesso da operação'''
+    limpar_console()
+    exibir_subtitulo('3. Alternar estado dos restaurantes:')
+    nome = input('Digite o nome do restaurante que deseja alterar o estado: ')
+    restaurante_encontrado = False
+  
+    for restaurante in restaurantes:
+        if nome == restaurante['nome']:
+            restaurante_encontrado = True
+            restaurante['ativo'] = not restaurante['ativo']
+            mensagem = f'O restaurante {cor_texto.BOLD}{nome}{cor_texto.END} foi {cor_texto.BOLD}{cor_texto.BLUE}ativado{cor_texto.END} com sucesso!' if restaurante['ativo'] else f'O restaurante {cor_texto.BOLD}{nome}{cor_texto.END} foi {cor_texto.BOLD}{cor_texto.GREY}desativado{cor_texto.END} com sucesso!'
+
+    if not restaurante_encontrado:
+        print('\n\tRestaurante não encontrado!')
+        print('\nDigite 3 para tentar novamente. ')
+        escolha = str(input('Digite qualquer tecla para voltar ao menu principal. '))
+        if escolha == '3':
+            alternar_estado_restaurante()
+        else:  main()
+
+    print(mensagem)
+    voltar_ao_menu_principal()
+```
+
+
 ![Alternar](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/eduardo_aran/OneDrive%20-%20Sicredi/Documents/Estudos/Python/Sabor-Express/image/README/alternar.gif)
 
 #### Remover restaurante
 
 Remove um restaurante caso ele esteja desativado.
+
+```python
+def remover_restaurantes():
+    '''
+    Remove restaurantes da lista
+  
+    Outputs:
+    - Exibe mensagem indicando o sucesso da operação'''
+    limpar_console()
+    exibir_subtitulo('4. Remover restaurantes:')
+    nome = input('Digite o nome do restaurante que deseja remover: ')
+    restaurante_encontrado = False
+    restaurante_ativo = False
+    for restaurante in restaurantes:
+        if nome == restaurante['nome']:
+            restaurante_encontrado = True
+            if restaurante['ativo'] == True:
+                restaurante_ativo = True
+            else:
+                restaurantes.remove(restaurante)
+                print(f'O restaurante {cor_texto.BOLD}{nome}{cor_texto.END} foi {cor_texto.BOLD}{cor_texto.RED}removido{cor_texto.END} com sucesso!')
+
+    if not restaurante_encontrado:
+        print('\n\tRestaurante não encontrado!')
+        print('\nDigite 4 para tentar novamente. ')
+        escolha = str(input('Digite qualquer tecla para voltar ao menu principal. '))
+        if escolha == '4':
+            remover_restaurantes()
+        else: main()
+    elif restaurante_ativo == True:
+            print('\n\tRestaurante ainda está ativo!')
+            print('\nDigite 3 para ir à alteração de estado. ')
+            escolha = str(input('Digite qualquer tecla para voltar ao menu principal. '))
+            if escolha == '3':
+                alternar_estado_restaurante()
+            else: main()
+    else: voltar_ao_menu_principal()
+```
 
 ![Remover](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/eduardo_aran/OneDrive%20-%20Sicredi/Documents/Estudos/Python/Sabor-Express/image/README/remover.gif)
