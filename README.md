@@ -25,7 +25,7 @@ Este desenvolvimento tem como objetivo servir de base apara aprendizagem visando
 
 ![menu](image/README/menu.png)
 
-### Funcionamento
+## Funcionamento
 
 Faz os cadastro, listagem, alternação estados e remoção dos restaurantes através de funções dedicadas, mostrando via terminal com estilização.
 
@@ -63,7 +63,7 @@ Lista as opções em um menu e realiza a função respectiva de cada uma.
 
 ```
 
-#### Cadastrar restaurante
+### Cadastrar restaurante
 
 Cadastra o restaurante dentro do dicionário.
 
@@ -91,7 +91,7 @@ def cadastrar_novo_restaurante():
 
 ![Cadastramento](image/README/cadastramento.gif)
 
-#### Listar restaurantes
+### Listar restaurantes
 
 Lista os restaurantes existentes com sua categoria e seu estado (Em funcionamento ou Desativado).
 
@@ -113,17 +113,16 @@ def listar_restaurantes():
         else:
             print(f'\t\t{cor_texto.GREY}Desativado{cor_texto.END}')
         print('')
-      
+    
     voltar_ao_menu_principal()
 
 ```
 
-![Listar](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/eduardo_aran/OneDrive%20-%20Sicredi/Documents/Estudos/Python/Sabor-Express/image/README/listar.gif)
+![Listar](image/README/listar.gif)
 
-#### Alternar estados dos restaurantes
+### Alternar estados dos restaurantes
 
 Altera o dicionário invertendo o estado de um restaurante (De desativado para ativo).
-
 
 ```python
 def alternar_estado_restaurante():
@@ -154,10 +153,9 @@ def alternar_estado_restaurante():
     voltar_ao_menu_principal()
 ```
 
+![Alternar](image/README/alternar.gif)
 
-![Alternar](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/eduardo_aran/OneDrive%20-%20Sicredi/Documents/Estudos/Python/Sabor-Express/image/README/alternar.gif)
-
-#### Remover restaurante
+### Remover restaurante
 
 Remove um restaurante caso ele esteja desativado.
 
@@ -199,4 +197,4 @@ def remover_restaurantes():
     else: voltar_ao_menu_principal()
 ```
 
-![Remover](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/eduardo_aran/OneDrive%20-%20Sicredi/Documents/Estudos/Python/Sabor-Express/image/README/remover.gif)
+![Remover](image/README/remover.gif)
