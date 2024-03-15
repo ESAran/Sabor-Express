@@ -64,9 +64,11 @@ Lista as opções em um menu e realiza a função respectiva de cada uma.
 ```
 
 ### Cadastrar restaurante
-
 Cadastra o restaurante dentro do dicionário.
 
+![Cadastramento](image/README/cadastramento.gif)
+
+---
 ```python
 def cadastrar_novo_restaurante():
     '''Essa função é responsável por cadastrar um novo restaurante 
@@ -89,12 +91,12 @@ def cadastrar_novo_restaurante():
     voltar_ao_menu_principal()
 ```
 
-![Cadastramento](image/README/cadastramento.gif)
-
 ### Listar restaurantes
-
 Lista os restaurantes existentes com sua categoria e seu estado (Em funcionamento ou Desativado).
 
+![Listar](image/README/listar.gif)
+
+---
 ```python
 def listar_restaurantes():
     '''Lista os restaurantes presentes na lista 
@@ -118,11 +120,12 @@ def listar_restaurantes():
 
 ```
 
-![Listar](image/README/listar.gif)
-
 ### Alternar estados dos restaurantes
-
 Altera o dicionário invertendo o estado de um restaurante (De desativado para ativo).
+
+![Alternar](image/README/alternar.gif)
+
+---
 
 ```python
 def alternar_estado_restaurante():
@@ -153,12 +156,12 @@ def alternar_estado_restaurante():
     voltar_ao_menu_principal()
 ```
 
-![Alternar](image/README/alternar.gif)
-
 ### Remover restaurante
-
 Remove um restaurante caso ele esteja desativado.
 
+![Remover](image/README/remover.gif)
+
+---
 ```python
 def remover_restaurantes():
     '''
@@ -197,4 +200,3 @@ def remover_restaurantes():
     else: voltar_ao_menu_principal()
 ```
 
-![Remover](image/README/remover.gif)
