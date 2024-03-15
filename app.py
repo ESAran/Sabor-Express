@@ -9,6 +9,8 @@ restaurantes = [{'nome':"Manu's Risottos",'categoria':'Risotos', 'ativo':True},
 #region GUI
 
 def nome_programa():
+    '''
+    Exibe o nome estilizado do programa na tela'''
     print('''
 
 ░██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
@@ -19,6 +21,11 @@ def nome_programa():
 ╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░\n''')
 
 def exibir_subtitulo(subtitulo):
+    '''
+    Exibe um subtítulo estilizado na tela 
+    
+    Inputs:
+    - texto: str - O texto do subtítulo'''
     print('''              
 ▒█▀▀▀█ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ 　 ▒█▀▀▀ █░█ █▀▀█ █▀▀█ █▀▀ █▀▀ █▀▀ 
 ░▀▀▀▄▄ █▄▄█ █▀▀▄ █░░█ █▄▄▀ 　 ▒█▀▀▀ ▄▀▄ █░░█ █▄▄▀ █▀▀ ▀▀█ ▀▀█ 
@@ -28,6 +35,9 @@ def exibir_subtitulo(subtitulo):
     print(f'{subtitulo}\n')
 
 def exibir_opcoes():
+    '''
+    Exibe as opções disponíveis no menu principal'''
+
     print('''1. Cadastrar restaurante
 2. Listar restaurantes
 3. Alternar estado dos restaurantes
@@ -35,6 +45,8 @@ def exibir_opcoes():
 5. Sair\n''')
 
 def finalizar_app():
+    '''
+    Exibe mensagem de finalização do aplicativo'''
     limpar_console()
     exibir_subtitulo(f'''{cor_texto.BOLD}Uso do aplicativo finalizado!
 Obrigado pela preferência!{cor_texto.END}
@@ -63,10 +75,23 @@ class cor_texto:
 
 #region Funcionamento
 def voltar_ao_menu_principal():
+    '''
+    Solicita uma tecla para voltar ao menu principal 
+    
+    Outputs:
+    - Retorna ao menu principal'''
     input('\nDigite uma tecla para retornar ao menu principal. ')
     main()
 
 def cadastrar_novo_restaurante():
+    '''Essa função é responsável por cadastrar um novo restaurante 
+    
+    Inputs:
+    - Nome do restaurante
+    - Categoria
+
+    Outputs:
+    - Adiciona um novo restaurante a lista de restaurantes'''
     limpar_console()
     exibir_subtitulo('1. Cadastrar restaurante:')
     
@@ -79,6 +104,10 @@ def cadastrar_novo_restaurante():
     voltar_ao_menu_principal()
 
 def listar_restaurantes():
+    '''Lista os restaurantes presentes na lista 
+    
+    Outputs:
+    - Exibe a lista de restaurantes na tela'''
     limpar_console()
     exibir_subtitulo('2. Listar restaurantes:')
     i=0
@@ -95,6 +124,10 @@ def listar_restaurantes():
     voltar_ao_menu_principal()
 
 def alternar_estado_restaurante():
+    '''Altera o estado ativo/desativado de um restaurante 
+    
+    Outputs:
+    - Exibe mensagem indicando o sucesso da operação'''
     limpar_console()
     exibir_subtitulo('3. Alternar estado dos restaurantes:')
     nome = input('Digite o nome do restaurante que deseja alterar o estado: ')
@@ -118,6 +151,11 @@ def alternar_estado_restaurante():
     voltar_ao_menu_principal()
 
 def remover_restaurantes():
+    '''
+    Remove restaurantes da lista
+    
+    Outputs:
+    - Exibe mensagem indicando o sucesso da operação'''
     limpar_console()
     exibir_subtitulo('4. Remover restaurantes:')
     nome = input('Digite o nome do restaurante que deseja remover: ')
@@ -149,11 +187,21 @@ def remover_restaurantes():
     else: voltar_ao_menu_principal()
 
 def opcao_invalida():
+    '''
+    Exibe mensagem de opção inválida e retorna ao menu principal 
+    
+    Outputs:
+    - Retorna ao menu principal'''
     limpar_console()
     exibir_subtitulo('Opção inválida! Tente novamente!')
     voltar_ao_menu_principal()
 
-def escolher_opcao(): 
+def escolher_opcao():
+    '''
+    Solicita e executa a opção escolhida pelo usuário 
+    
+    Outputs:
+    - Executa a opção escolhida pelo usuário'''
     try:
         opcao_escolhida = int(input('Escolha uma opção: '))
 
@@ -176,6 +224,8 @@ def escolher_opcao():
 #endregion
         
 def main():
+    '''
+    Função principal que inicia o programa'''
     limpar_console()
     nome_programa()
     exibir_opcoes()
