@@ -1,7 +1,10 @@
 import os, time
 
 # Lista de Restaurantes
-restaurantes = [{'nome':"Manu's Risottos",'categoria':'Risotos', 'ativo':True},{'nome':"Pizzaranria",'categoria':'Pizzaria', 'ativo':True},{'nome':"Merdeiro",'categoria':'Hamburgueria', 'ativo':True}, {'nome':"Slomphies",'categoria':'Smoothieria', 'ativo':False}]
+restaurantes = [{'nome':"Manu's Risottos",'categoria':'Risotos', 'ativo':True},
+                {'nome':"Pizzaranria",'categoria':'Pizzaria', 'ativo':True},
+                {'nome':"Merdeiro",'categoria':'Hamburgueria', 'ativo':True}, 
+                {'nome':"Slomphies",'categoria':'Smoothieria', 'ativo':False}]
 
 #region GUI
 
@@ -27,18 +30,16 @@ def exibir_subtitulo(subtitulo):
 def exibir_opcoes():
     print('''1. Cadastrar restaurante
 2. Listar restaurantes
-3. Ativar restaurantes
-4. Sair\n''')
+3. Alternar estado dos restaurantes
+4. Remover restaurantes
+5. Sair\n''')
 
 def finalizar_app():
-    print('''
-________________________________
-          
-Uso do aplicativo finalizado!
-Obrigado pela preferência!
-________________________________
+    limpar_console()
+    exibir_subtitulo(f'''{cor_texto.BOLD}Uso do aplicativo finalizado!
+Obrigado pela preferência!{cor_texto.END}
+''')
 
-          ''')
 
 def limpar_console():
     time.sleep(0.01)
@@ -95,23 +96,57 @@ def listar_restaurantes():
 
 def alternar_estado_restaurante():
     limpar_console()
-    exibir_subtitulo('3. Ativar restaurantes:')
+    exibir_subtitulo('3. Alternar estado dos restaurantes:')
     nome = input('Digite o nome do restaurante que deseja alterar o estado: ')
     restaurante_encontrado = False
     
     for restaurante in restaurantes:
         if nome == restaurante['nome']:
-            # inverte estado
+            restaurante_encontrado = True
             restaurante['ativo'] = not restaurante['ativo']
-            mensagem = f'O restaurante {nome} foi ativado com sucesso!' if restaurante['ativo'] else f'O restaurante foi desativado com sucesso!'
+            mensagem = f'O restaurante {cor_texto.BOLD}{nome}{cor_texto.END} foi {cor_texto.BOLD}{cor_texto.BLUE}ativado{cor_texto.END} com sucesso!' if restaurante['ativo'] else f'O restaurante {cor_texto.BOLD}{nome}{cor_texto.END} foi {cor_texto.BOLD}{cor_texto.GREY}desativado{cor_texto.END} com sucesso!'
 
     if not restaurante_encontrado:
         print('\n\tRestaurante não encontrado!')
-        input('Digite qualquer tecla para tentar novamente. ')
-        alternar_estado_restaurante()
+        print('\nDigite 3 para tentar novamente. ')
+        escolha = str(input('Digite qualquer tecla para voltar ao menu principal. '))
+        if escolha == '3':
+            alternar_estado_restaurante()
+        else:  main()
 
     print(mensagem)
     voltar_ao_menu_principal()
+
+def remover_restaurantes():
+    limpar_console()
+    exibir_subtitulo('4. Remover restaurantes:')
+    nome = input('Digite o nome do restaurante que deseja remover: ')
+    restaurante_encontrado = False
+    restaurante_ativo = False
+    for restaurante in restaurantes:
+        if nome == restaurante['nome']:
+            restaurante_encontrado = True
+            if restaurante['ativo'] == True:
+                restaurante_ativo = True
+            else:
+                restaurantes.remove(restaurante)
+                print(f'O restaurante {cor_texto.BOLD}{nome}{cor_texto.END} foi {cor_texto.BOLD}{cor_texto.RED}removido{cor_texto.END} com sucesso!')
+
+    if not restaurante_encontrado:
+        print('\n\tRestaurante não encontrado!')
+        print('\nDigite 4 para tentar novamente. ')
+        escolha = str(input('Digite qualquer tecla para voltar ao menu principal. '))
+        if escolha == '4':
+            remover_restaurantes()
+        else: main()
+    elif restaurante_ativo == True:
+            print('\n\tRestaurante ainda está ativo!')
+            print('\nDigite 3 para ir à alteração de estado. ')
+            escolha = str(input('Digite qualquer tecla para voltar ao menu principal. '))
+            if escolha == '3':
+                alternar_estado_restaurante()
+            else: main()
+    else: voltar_ao_menu_principal()
 
 def opcao_invalida():
     limpar_console()
@@ -129,7 +164,9 @@ def escolher_opcao():
                 listar_restaurantes()
             case 3: 
                 alternar_estado_restaurante()
-            case 4: 
+            case 4:
+                remover_restaurantes()
+            case 5: 
                 finalizar_app()
             case _:
                 opcao_invalida()
