@@ -4,7 +4,7 @@ O seguinte repositório faz parte do curso **Python: crie sua primeira aplicaç�
 
 Data de conclusão: 15/03/2024
 
-Carga horária: **8h**
+Carga horária: **8h** 
 
 * Crie um projeto em Python usando o VSCode
 * Descubra o fluxo de uma aplicação com o uso de condicionais e laços de repetição
